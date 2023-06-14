@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+body {font-family : "Open Sans", sans-serif;
+  background: linear-gradient(-100deg, #ff8400, #b97b07, #4e9bbe, #119dbc);
+  animation: gradient 10s ease infinite;
+}
+
+#btnID {
+  background-color: #4CAF50; /* Set the initial background color to green */
+  color: white; /* Set the text color */
+  border: none; /* Remove border */
+  padding: 10px 20px; /* Add padding */
+  text-align: center; /* Center align text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Display as inline element */
+  font-size: 16px; /* Set font size */
+  margin: 10px 0; /* Add margin */
+  cursor: pointer; /* Add cursor on hover */
+}
+
+#btnID:hover {
+  background-color: #808080; /* Change the background color to gray on hover */
+}
+#particles-js
+{
+  height: 100%;
+  background: rgb(0, 0, 0);
+}
+
+.navbar {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  z-index: 1;
+  transform: translateX(1125px);
+}
+
+nav
+{
+    position: relative;
+    flex: 1;
+    text-align: right;
+    z-index: 1;
+}
+nav ul
+{
+    display: inline-block;
+    list-style-type: none;
+    z-index: 1;
+}
+nav ul li 
+{
+    display: inline-block;
+    margin-right: 30px;
+    z-index: 1;
+}
+a
+{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    z-index: 1;
+}
+
+.current
+{
+    background: rgb(153, 152, 152);
+    border-radius: 10px;
+    padding: 10px
+}
+
+.wrapper
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  max-width: 550px;
+  width: 100%;
+  background: #fff;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.wrapper h2
+{
+  text-align: center;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #332902;
+}
+
+.wrapper .input_field
+{
+  margin-bottom: 20px;
+}
+
+.wrapper .input_field input[type="text"],
+.wrapper textarea
+{
+  border: 1px solid #e0e0e0;
+  width: 100%;
+  padding: 10px;
+}
+
+.wrapper textarea
+{
+  resize: none;
+  height: 80px;
+}
+
+.wrapper .btn input[type="submit"]
+{
+  border: none;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  background: #face1d;
+  color: #332902;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+#error_message
+{
+  margin-bottom: 20px;
+  background: #ff0008;
+  padding: 0px;
+  text-align: center;
+  font-size: 12px;
+  transition: all 0.1s ease;
+}
+.social{
+  position: absolute;
+	display: flex;
+	flex-direction: row;
+  padding: 15px;
+  transform: translateY(-10px);
+  left: 40%;
+}
+.social a:hover{
+  transform: scale(1.1);
+	transition: all ease 0.3s;
+}
+
+
+
+.center {
+  margin-top: 300px; 
+  margin-left: auto; 
+  margin-right: auto;
+  /* padding-top: 500px; */
+
+}
+.bimg{
+background: linear-gradient(-100deg, #ff8400, #b97b07, #4e9bbe, #119dbc);
+height:1000px;
+animation: gradient 15s ease infinite;
+background-position: bottom;
+background-size: auto;
+height: auto;
+width: 100%;
+}
+
+    .studentdet {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      .studentdet td, .studentdet th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      
+      .studentdet tr:nth-child(even){background-color: black;
+        color:#808080;
+      }
+      
+      .studentdet tr:hover {background-color: #ddd;}
+      
+      .studentdet th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+      }

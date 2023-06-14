@@ -1,0 +1,8 @@
+UI CASE STUDY GROUP 6
+
+1) AMRITH KRISHNAN CB.EN.U4CSE20306 - Home Page
+2) KOWSHIKRAJA T R  CB.EN.U4CSE20331 - Catalogue Page (Merch)
+3) KARTHIK SUMOD     CB.EN.U4CSE20325 - About Us Page 
+4) KESHAV S                    CB.EN.U4CSE20327 -  Contact Us Page 
+5) MAHESH MADHAV    CB.EN.U4CSE20334 -  Login Page
+6) Collabarative work by all the team members -  Chat Bot Page

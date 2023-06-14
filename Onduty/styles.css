@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+body
+{
+  background: linear-gradient(-100deg, #ff8400, #b97b07, #4e9bbe, #119dbc);
+  height:1000px;
+  animation: gradient 15s ease infinite;
+  background-position: bottom;
+  background-size: auto;
+  height: auto;
+  width: 100%;
+}
+#particles-js
+{
+  height: 100%;
+  background: rgb(0, 0, 0);
+}
+
+.navbar
+{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+nav
+{
+    position: relative;
+    flex: 1;
+    text-align: right;
+    z-index: 1;
+}
+nav ul
+{
+    display: inline-block;
+    list-style-type: none;
+    z-index: 1;
+}
+nav ul li 
+{
+    display: inline-block;
+    margin-right: 30px;
+    z-index: 1;
+}
+.navbar a {
+  color: black; /* Replace with the desired text color, e.g., red */
+}
+a
+{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    z-index: 1;
+}
+
+.current
+{
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.wrapper
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  max-width: 550px;
+  width: 100%;
+  background: #fff;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.wrapper h2
+{
+  text-align: center;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #332902;
+}
+
+.wrapper .input_field
+{
+  margin-bottom: 20px;
+}
+
+.wrapper .input_field input[type="text"],
+.wrapper textarea
+{
+  border: 1px solid #e0e0e0;
+  width: 100%;
+  padding: 10px;
+}
+
+.wrapper textarea
+{
+  resize: none;
+  height: 80px;
+}
+
+.wrapper .btn input[type="submit"]
+{
+  border: none;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  background: #face1d;
+  color: #332902;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+#error_message
+{
+  margin-bottom: 20px;
+  background: #ff0008;
+  padding: 0px;
+  text-align: center;
+  font-size: 12px;
+  transition: all 0.1s ease;
+}
+.social{
+  position: absolute;
+	display: flex;
+	flex-direction: row;
+  padding: 15px;
+  transform: translateY(-10px);
+  left: 40%;
+}
+.social a:hover{
+  transform: scale(1.1);
+	transition: all ease 0.3s;
+}
+/* Customize the date picker appearance */
+.ui-datepicker {
+  width: auto;
+  font-family: 'Poppins', sans-serif; /* Set the desired font-family */
+  font-size: 14px; /* Set the desired font size */
+}
+
+.ui-datepicker-header {
+  background-color: #ff8400; /* Set the desired header background color */
+  color: #fff; /* Set the desired header text color */
+}
+
+.ui-datepicker-calendar th {
+  background-color: #ff8400; /* Set the desired calendar header background color */
+  color: #fff; /* Set the desired calendar header text color */
+}
+
+.ui-datepicker-calendar td a {
+  color: #000; /* Set the desired calendar date text color */
+}
+
+.ui-datepicker-current {
+  color: #ff0000; /* Set the desired today's date text color */
+}
+
+/* Adjust the date picker position */
+.ui-datepicker {
+  margin-top: 10px; /* Set the desired margin-top value */
+}

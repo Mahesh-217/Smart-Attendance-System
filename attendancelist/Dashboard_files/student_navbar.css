@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.7;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+/* ############### Utility Class ############### */
+.text-size-32 {
+  font-size: 1.6rem;
+}
+
+.icons {
+  color:  #b8c7ce;
+  margin-right: 0.7em;
+}
+
+.logo-img {
+  color: #ffffff;
+  margin-right: 0.7em;
+}
+
+/* ########## Sidebar ########## */
+.sidebar {
+  background-color: #222d32;
+  width: 230px;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.sidebar::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.sidebar ul li a {
+  display: block;
+  color: #b8c7ce;
+  padding: 0.7em;
+}
+
+.sidebar ul li a:hover {
+  background: #1E282C;
+  color: #ffffff;
+}
+
+.sidebar ul li a:hover .icons {
+  color: #ffffff;
+}
+
+/* ########## Horizontalbar ########## */
+.navbar-horizontal {
+  height: 60px;
+  width: 84vw;
+  position: fixed;
+  background-color: #3c8dbc;
+  margin-left: 230px;
+  z-index: 3;
+}
+
+.navbar-horizontal-content {
+  margin: 1em;
+  float: right;
+  color: #ffffff;
+}
+
+.navbar-horizontal::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.userinfo {
+  padding: 0.2em 0.5em;
+}
+
+.logo {
+  color:  #ffffff;
+  text-align: center;
+  padding: 0.2em 0;
+  font-size: 23.5px;
+  background-color: #367fa9;
+  height: 60px;
+}
+
+/* ########## Notification Styling ########## */
+.notification-btn {
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.notification-group {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #222D32;
+  border-radius: 0.5rem;
+  width: 30rem;
+  height: 35rem;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  right: 0;
+  z-index: 1;
+}
+
+.dropdown-content p {
+  color: white;
+  font-size: 1.4rem;
+  padding: 10px 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.showNotification {
+  display: block;
+}
+
+.notification-line {
+  width:90%;
+  background-color: #b8c7ce;
+  height: 1px;
+  border: 0;
+  margin:auto;
+}

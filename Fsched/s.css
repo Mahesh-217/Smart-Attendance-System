@@ -1,0 +1,118 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    background: linear-gradient(-100deg, #ff8400, #b97b07, #4e9bbe, #119dbc);
+    animation: gradient 10s ease infinite;
+  }
+  
+  .container {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1 {
+    color: #333;
+    text-align: center;
+    margin-top: 0;
+  }
+  
+  form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  select,
+  input[type="submit"],
+  input[type="time"],
+  input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  input[type="submit"] {
+    background-color: #e93c02;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #eb865e;
+  }
+  
+  #courseSection,
+  #timeSlotSection {
+    margin-top: 20px;
+    transition: all 0.5s ease;
+  }
+  
+  #courseSection.hide,
+  #timeSlotSection.hide {
+    transform: translateX(-100%);
+  }
+  
+  #timeSlotSection.hide {
+    transform: translateX(100%);
+  }
+  
+  #courseSection.show,
+  #timeSlotSection.show {
+    transform: translateX(0%);
+  }
+  
+  h2 {
+    margin-top: 30px;
+    color: #333;
+    text-align: center;
+  }
+  
+  ul {
+    margin-top: 10px;
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  li {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.5s ease;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+  
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }

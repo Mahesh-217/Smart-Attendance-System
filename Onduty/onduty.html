@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>On Duty</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="scripts.js"></script>
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+   
+</head>
+
+<body>
+    <div class="navbar">
+        <nav>
+            <ul>
+                <li><a href="/welcome">Home</a></li>
+                <li><a href="#" class="current">On-Duty</a></li>
+                <li><a href="/asserts/attendancelist/list.html" id="attlink">Attendance</a></li>
+                <li><a href="/asserts/bot/bot.html" id="botLink">Bot</a></li>
+            </ul>
+        </nav>
+        <table>
+            <tr>
+            <td>
+            <font size = "3"
+            <div class="app-user">Welcome, <span id="username"><%= username %></span></div>
+            </font>
+            </td>
+            
+            </tr>
+            </table>
+    </div>
+   
+      
+    <!-- <div id="particles-js"></div>
+    <script type="text/javascript" src="particles.js"></script>
+    <script type="text/javascript" src="app.js"></script> -->
+    
+<div class="wrapper">
+
+  <h2>On Duty Application</h2>
+  <div id="error_message"></div>
+  <form id="myform" onsubmit="return valid();" enctype="multipart/form-data" action="/submit-form" method="POST">
+    <div class="input_field">
+        <input type="text" placeholder="Name" id="name" name="uname">
+    </div>
+    <div class="input_field">
+        <input type="text" placeholder="Roll number" id="subject" name="rollnum">
+    </div>
+    <div class="input_field">
+        <input type="text" placeholder="Subject" id="phone" name="subject">
+    </div>
+    <div class="input_field">
+        <input type="text" placeholder="Course Handler" id="course" name="course">
+    </div>
+    <div class="input_field">
+        <input type="text" placeholder="Slot Number" id="slot" name="slot">
+    </div>
+    <div class="input_field">
+        <input type="text" placeholder="Date" id="datepicker" name="date">
+    </div>    
+    <!-- <div class="input_field">
+        <textarea placeholder="Reason" id="message" name="message"></textarea>
+    </div><br> -->
+    <div>
+        <label for="image_uploads" style="margin-bottom: 20px;">Choose images to upload (PNG, JPG)</label><br><br>
+        <input
+          type="file"
+          id="image_uploads"
+          name="image_uploads"
+          accept=".jpg, .jpeg, .png"
+          multiple />
+      </div>
+      <br>
+      <div>
+      </div>
+    <br>
+    <div class="btn">
+        <input type="submit">
+    </div>
+  </form>
+  <div class="social">
+    <a href="https://www.facebook.com/AmritaUniversity/" target="blank"><i class="fab fa-facebook-f" style="color: black;"></i></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://twitter.com/AMRITAedu?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="blank"><i class="fab fa-twitter" style="color: black;"></i></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://www.instagram.com/amrita_university/?hl=en" target="blank"><i class="fab fa-instagram" style="color: black;"></i></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
+    </div>
+</div>
+<script>
+    // Get the value of the "username" query parameter from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+  
+    // Set the username in the app-user element
+    const appUser = document.getElementById('username');
+    appUser.textContent = username;
+    const botLink = document.getElementById('botLink');
+    botLink.href = `/asserts/bot/bot.html?username=${username}`;
+    const attlink = document.getElementById('attlink');
+    attlink.href = `/asserts/attendancelist/list.html?username=${username}`;
+  </script>
+  <script>
+    $(function() {
+        $("#datepicker").datepicker({
+            dateFormat: "yy-mm-dd", // Set the desired date format
+            showButtonPanel: true, // Show the button panel with today and done buttons
+            changeMonth: true, // Enable month dropdown
+            changeYear: true, // Enable year dropdown
+        });
+    });
+</script>
+
+</body>
+</html>

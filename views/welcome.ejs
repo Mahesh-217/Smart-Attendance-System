@@ -1,0 +1,220 @@
+<!-- header.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asserts/style.css">
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="undefined" crossorigin="anonymous"></script>
+    <script src="asserts/typed.js"></script>
+    <script type="text/javascript" src="https://momentjs.com/downloads/moment.js"></script>
+
+    <title>Home</title>
+   
+    
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const user_id = '<%= user_id %>'; // Retrieve the user_id value from the server-side
+        getSubjects(user_id);
+      });
+      function check_enabled(time_slot) {
+        // check if current time is within start_time and end_time
+        const today = new Date();
+        const day = today.getDay();
+        const current_time = moment();
+        const start_time = moment(time_slot.start_time, 'hh:mm:ss');
+        const end_time = moment(time_slot.end_time, 'hh:mm:ss');
+        return current_time.isBetween(start_time, end_time) && day==time_slot.day;
+      }
+
+      function isButtonDisabled(user_id, course_id) {
+        const key = `${user_id}_${course_id}`;
+        const disabledStatus = localStorage.getItem(key);
+        return disabledStatus === 'disabled';
+      }
+      
+      function disableButton(user_id, course_id) {
+        const key = `${user_id}_${course_id}`;
+        localStorage.setItem(key, 'disabled');
+      }
+      
+      function disableButtonsOnLoad(user_id) {
+  const presentButtons = document.getElementsByClassName('presentButton');
+  for (let i = 0; i < presentButtons.length; i++) {
+    const button = presentButtons[i];
+    const course_id = button.getAttribute('data-course-id');
+    if (isButtonDisabled(user_id, course_id)) {
+      button.disabled = true;
+    }
+  }
+}
+
+      async function set_present(user, time_slot) {
+        const current_time = moment().format('HH:mm:ss'); 
+        const current_date = moment().format('YYYY-MM-DD');
+        const res = await fetch(`/api/attendance?student_id=${user.user_id}&course_id=${time_slot.course_id}&day=${current_date}&present_time=${current_time}&slot=${time_slot.slot}`).then(res => res.json());
+        const presentButtons = document.getElementsByClassName('presentButton');
+        for (let i = 0; i < presentButtons.length; i++) {
+             presentButtons[i].disabled = true;}
+        console.log(res);
+      }
+
+      async function createSubjectSection(subject,user_id) {
+        const time_slots = await fetch(`/api/time-slots?course_id=${subject.course_id}`).then(res => res.json());
+        const time_slots_array = Object.values(time_slots);
+
+        const time_slot_rows = time_slots_array.map((time_slot) => {
+          const isDisabled = isButtonDisabled(user_id, time_slot.course_id);
+          return `
+            <tr style="height:40px;">
+              <td style="text-align:center;">${time_slot.day}</td>
+              <td style="text-align:center;">${time_slot.start_time}</td>
+              <td style="text-align:center;">${time_slot.end_time}</td>
+              <td style="text-align:center;">${time_slot.slot}</td>
+              <td style="text-align:center;">
+                <button class="presentButton" 
+            onclick='set_present(${JSON.stringify({ user_id })}, ${JSON.stringify(time_slot)})'
+            ${check_enabled(time_slot) ? (isDisabled ? "disabled" : "") : "disabled"}
+          >Present</button></td>
+            </tr>
+          `
+        })
+
+        const combined_time_slot_rows = time_slot_rows.join("");
+        return `
+          <div id = ${subject.course_id}_section style="width:1300px;">
+              <label for="touch1"><div class="spa">${subject.course_id}-${subject.course_name}</div></label> 
+          
+              <div id= ${subject.course_id}_dropdown>
+                <table style="border-collapse: collapse;width: 100%;">
+                  <tr style="height:40px;background-color: #454242;">
+                    <th style="text-align:center;">DAY</th>
+                    <th style="text-align:center;">Start time</th>
+                    <th style="text-align:center;">End time</th>
+                    <th style="text-align:center;">Slot</th>
+                    <th style="text-align:center;">Attendance</th>
+                  </tr>
+                  ${combined_time_slot_rows}
+                </table>
+              </div>
+            
+          </div>
+        `
+      }
+
+      async function getSubjects(user_id) {
+        // query api/all-subjects and get list of subjects
+        // display list of subjects
+        const res = await fetch('/api/all-subjects').then(res => res.json());
+        const res_array = Object.values(res);
+      
+
+        const mainContent = document.getElementById('main-content');
+
+        let final_sections = await Promise.all(res_array.map(async function(element) {
+          return await createSubjectSection(element,user_id);
+        }));
+
+        mainContent.innerHTML = final_sections.join("");
+      }
+    
+    </script>
+</head>
+<body>
+  <div class="bimg">
+    <div class="maincontain">
+        <div class="navbar">
+            <div class="logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a class="current" href="#">Home</a></li>
+                    <li><a href="/asserts/Onduty/onduty.html?username=<%= username %>" >On-Duty</a></li>
+                    <li><a href="/asserts/attendancelist/list.html?username=<%= username %>">Attendance</a></li>
+                    <li><a href="/asserts/bot/bot.html?username=<%= username %>">Bot</a></li>
+                    <li><a href="/logout">Log Out</a></li>
+                </ul>
+            </nav>
+            <table>
+                <tr>
+                <td>
+                <font size = "3">
+                <div class="app-user" >Welcome, <%= username %></div>
+                </font>
+                </td>
+                <td> </td>
+                <td>
+                <a 'href="#LINK#" class="t13NavLink"></a>
+                </td>
+                </tr>
+                </table>
+            <!-- <img id="carticn" src="Images/cart.png"cart"> -->
+        </div>
+        <div class="tworows">
+            <div class="twotext" style="transform: translateY(-20px);">
+                <img src="asserts/Images/AMLOGO.png" alt="" style="transform: translateX(-80px) translateY(-60px);" height="310px" width="310px">
+                <h1><span class="typeele"></span></h1>
+               <!-- <p style="color: white;">Weakness is not in us, it is what we have outside</p> -->
+
+               <p style="color: black;">According to college regulations, students must maintain 100% attendance in all regular and remedial courses they have registered for. Attendance is marked by teachers, and it contributes to the internal assessment component. Leave is only allowed for unavoidable circumstances with proper application and approval. Medical leave requires a medical certificate, while non-medical leave needs to be countersigned by a parent/guardian or the Warden.</p>
+               <div id="readMoreSection" style="display: none;">
+                <img src="asserts/Images/ASECBE.jpg" alt="back" style="position:static;margin-top:-450px;margin-left:950px;height:400px;">
+
+                 <section>
+                 </section>
+                 <section>
+                   <p>Unauthorized absence is considered a breach of discipline. Official work, academic competitions, sports and cultural activities, and approved internships are eligible for leave, supported by relevant proof. The total authorized leave should not exceed 20% of the course hours. Students failing to achieve a minimum of 75% attendance in a course are ineligible for the end-semester examination and receive an 'FA' grade. These students must re-register for the course later or opt for eligible remedial options.</p>
+                 </section>
+               </div>
+               <button id="readMoreButton" class="btn" onclick="toggleReadMore()">Read More</button>
+               <script>
+                 function toggleReadMore() {
+                   const readMoreSection = document.getElementById('readMoreSection');
+                   const readMoreButton = document.getElementById('readMoreButton');
+                   if (readMoreSection.style.display === 'none') {
+                     readMoreSection.style.display = 'block';
+                     readMoreButton.textContent = 'Read Less';
+                   } else {
+                     readMoreSection.style.display = 'none';
+                     readMoreButton.textContent = 'Read More';
+                   }
+                 }
+               </script>
+
+               <br>
+               <!-- <a id="drop" class="btn">Find more</a> -->
+            </div>
+            <div class="twotext">
+            <!-- </br> -->
+              <!-- <img src="asserts/Images/ASECBE.jpg" alt="back" style="margin-top:100px;"> -->
+            </div>
+        </div>
+        
+    </div>
+</div>
+</div>
+
+
+<div class="sas" >
+    <script type="text/javascript" style="color: white;">
+        let typed = new Typed('.typeele',{
+          strings:["<span style='color:white;'>Smart Attendance System</span>"],
+            typeSpeed: 200,
+            backSpeed: 40,
+            loop: true,
+        });
+    </script>
+</div>
+
+<div class="secondsec">
+<div id = "myDropdown2">
+<div class = "drop" style="width:1400px;" id="main-content">
+  </div>
+  </div>
+  </div>
+</body>
+</html>

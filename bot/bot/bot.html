@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Saira Bot</title>
+    <style>
+        /* Add your CSS styling here */
+        .suggestions {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .suggestions li {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .suggestions li:hover {
+            background-color: #e5e5e5;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg">
+        <img src="../Images/boy.jpg" alt="" align="left">
+    </div>
+    <div class="navbar" style="font-size: 20px;">
+        <nav>
+            <ul>
+                <li><a href="../faculty.html">Home</a></li>
+                <li><a href="../Onduty/onduty.html">On-duty Applications</a></li>
+                <!-- <li><a href="../attendancelist/list.html">Attendance</a></li> -->
+                <li><a href="../bot/bot.html" class="current">Bot</a></li>
+            </ul>
+        </nav>
+        <table>
+            <tr>
+            <td>
+            <font size = "3"
+            <div class="app-user">Welcome, <span id="username"><%= username %></span></div>
+            </font>
+            </td>
+            
+            </tr>
+            </table>
+    </div>
+    <div id="main">
+        <div>User: <span id="user"></span></div>
+        <div>Krishna The Bot: <span id="chatbot"></span></div>
+        <div>
+            <input id="input" type="text" placeholder="Type here" autocomplete="off">
+            <ul id="suggestions" class="suggestions"></ul>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+           var trigger = [
+            ["Hi, are you a chatbot?", "Hello, are you a virtual assistant?", "Hey, are you a bot?"],
+            ["how to apply for on-duty or OD?", "Are you available to assist me for applying OD right now?", "help me where the od form is?"],
+            ["How can I log out of the system?", "Where can I find the logout option?", "What is the process to sign out?"],
+            ["How do I mark myself present for a course?", "Where can I find the 'Present' button for a course?", "What is the process to indicate attendance for a course?"],
+            ["How do I mark myself present for a slot?", "Where can I find the 'Present' button for a slot?", "What is the process to indicate attendance for a slot?"],
+            ["How can I view my attendance record?", "Where can I find my attendance history?", "Is there a way to access my attendance data?"],
+            ["How do I apply for leave?", "Where can I find the 'On Duty' form?", "What is the process to request leave?"],
+            ["Is there more information available?", "Can I explore additional options?", "Are there more features to discover?"],
+        ];
+
+        var reply = [
+            ["Yes, I'm the chatbot. How can I assist you?", "I'm the virtual assistant. How may I help you?", "I'm here to help. What do you need?"],
+            ["you can apply direct through a form in the top right corner.", "YOu can find the od at the top right corner of the home page :)", "Hey it will be in the top right corner of the home page."],
+            ["To log out, click on the 'Logout' option in the top right corner of the page.", "You can find the 'Logout' option in the top right corner to sign out.", "To log out, simply click on the 'Logout' option."],
+            ["To mark yourself present for a course, click on the 'Present' button corresponding to that course.", "You can indicate your attendance for a course by clicking on the 'Present' button for that course.", "To mark yourself present for a course, simply click on the 'Present' button associated with that course."],
+            ["To mark yourself present for a slot, click on the 'Present' button corresponding to that slot.", "You can indicate your attendance for a slot by clicking on the 'Present' button for that slot.", "To mark yourself present for a slot, simply click on the 'Present' button associated with that slot."],
+            ["To view your attendance record, navigate to the 'Attendance' section and you'll find your attendance history.", "You can access your attendance data in the 'Attendance' section, where your attendance record is available.", "To view your attendance record, go to the 'Attendance' section and you'll find your attendance history there."],
+            ["To apply for leave, fill out the 'On Duty' form available in the 'Leave' section.", "You can request leave by filling out the 'On Duty' form in the 'Leave' section.", "To apply for leave, navigate to the 'Leave' section and fill out the 'On Duty' form."],
+            ["Yes, there is more information available. You can explore additional options by clicking on the 'Find More' button.", "You have the option to explore more features. Just click on the 'Find More' button.", "There are more features to discover. Click on the 'Find More' button to explore."],
+        ];
+        var userInput = document.getElementById("input");
+        var userDisplay = document.getElementById("user");
+        var chatbotDisplay = document.getElementById("chatbot");
+        var suggestionsList = document.getElementById("suggestions");
+
+        userInput.addEventListener("input", function() {
+            var inputText = userInput.value.toLowerCase();
+            suggestionsList.innerHTML = "";
+
+            for (var i = 0; i < trigger.length; i++) {
+                for (var j = 0; j < trigger[i].length; j++) {
+                    if (trigger[i][j].toLowerCase().includes(inputText)) {
+                        var option = document.createElement("li");
+                        option.textContent = trigger[i][j];
+                        option.addEventListener("click", function() {
+                            userInput.value = this.textContent;
+                            suggestionsList.innerHTML = "";
+                            suggestionsList.style.display = "none";
+                        });
+                        suggestionsList.appendChild(option);
+                    }
+                }
+            }
+
+            if (suggestionsList.children.length > 0) {
+                suggestionsList.style.display = "block";
+            } else {
+                suggestionsList.style.display = "none";
+            }
+        });
+
+        userInput.addEventListener("keydown", function(event) {
+            if (event.keyCode === 13) {
+                var inputText = userInput.value;
+                userDisplay.textContent = inputText;
+                userInput.value = "";
+
+                var replyText = getChatbotReply(inputText);
+                chatbotDisplay.textContent = replyText;
+
+                suggestionsList.innerHTML = "";
+                suggestionsList.style.display = "none";
+            }
+        });
+
+        function getChatbotReply(message) {
+            for (var i = 0; i < trigger.length; i++) {
+                for (var j = 0; j < trigger[i].length; j++) {
+                    if (message.toLowerCase().includes(trigger[i][j].toLowerCase())) {
+                        return reply[i][Math.floor(Math.random() * reply[i].length)];
+                    }
+                }
+            }
+            return "I'm sorry, I didn't understand that. Can you please rephrase your question?";
+        }
+    </script>
+      <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+      
+        // Set the username in the app-user element
+        const appUser = document.getElementById('username');
+        appUser.textContent = username;
+        const botLink = document.getElementById('botLink');
+        botLink.href = `/asserts/Onduty/onduty.html?username=${username}`;
+        const attlink = document.getElementById('attlink');
+        attlink.href = `/asserts/attendancelist/list.html?username=${username}`;
+      </script>
+</body>
+</html>
+
+
+
