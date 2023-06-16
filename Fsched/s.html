@@ -6,8 +6,36 @@
   <link rel="stylesheet" type="text/css" href="s.css">
 </head>
 
+
 <body>
-  <h1>Faculty Scheduler System</h1>
+
+  <div class="navbar">
+        <nav>
+            <ul>
+              <li><a href="/faculty">Home</a></li>
+              <li><a href="#" class="current">Faculty Scheduler</a></li>
+              <li><a href="/asserts/Onduty/onduty/onduty.html" id="botLink">On-Duty Applications</a></li>
+              <li><a href="/asserts/bot/bot/bot.html" id="botLink">Bot</a></li>
+              <li><a href="/logout">Log Out</a></li>
+            </ul>
+        </nav>
+        <table>
+            <tr>
+                <td>
+                    <font size="2">
+                        <div class="app-user">Welcome <span id="username"><%= username %></span></div>
+                    </font>
+                </td>
+                <td> </td>
+                <td>
+                <a 'href="#LINK#" class="t13NavLink"></a>
+                </td>
+                </tr>
+                </table>
+    </div>
+
+
+  <!-- <h1>Faculty Scheduler System</h1> -->
   <form id="scheduleForm" action="/timeslots" method="POST">
     <h2>Add Schedule</h2>
     <label for="courseId">Course ID:</label>
